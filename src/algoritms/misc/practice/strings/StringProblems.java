@@ -9,21 +9,22 @@ public class StringProblems {
 
     public static void main(String[] args) {
 
+      // two useful methods - remember that a string can be converted into an char array / strings have  an inbuilt methods indexOf ('character')
+
       //  System.out.println(isAValidPalindrome("ababa"));
+
+      //  System.out.println(findTheLongestPalindrome("abba"));
 
       //  System.out.println(longestUniqueSubString("pwwke"));
 
       //  System.out.println(twoStringsAnagrams2("anagram" , "nagaram"));
-
-
-
-
     }
 
     private static int maxLength;
     private static int startIndex;
 
 
+    // palindrome - a word that reads the same backward and froward
     private static void isAValidPalindrome(String input) {
 
         // Reverse the string
@@ -69,11 +70,9 @@ public class StringProblems {
      * -  consider even and odd scenarios
      */
     private static String findTheLongestPalindrome(String input) {
-
         if (input.length() <= 1) {
             return input;
         }
-
         for (int i = 0; i < input.length() - 1; i++) {
             expandAroundMiddle(i, i, input);
             expandAroundMiddle(i, i + 1, input);
@@ -82,7 +81,6 @@ public class StringProblems {
     }
 
     private static void expandAroundMiddle(int left, int right, String input) {
-
         while (left >= 0 && right < input.length() && input.charAt(left) == input.charAt(right)) {
             left--;
             right++;
@@ -90,44 +88,35 @@ public class StringProblems {
         if (maxLength < right - 1 - left) {
             maxLength = right - 1 - left; // -1 here to avoid out of bound exception
             startIndex = left + 1; // +1 here to avoid out of bound exception
-        }
-    }
+        } }
 
     /**
-     * brute force - compare characters with the next one ,
-     * <p>
+     * brute force - compare characters with the next one
      * input abcabcbb - a -> if next one is not same keep going
      *
      * @param s abcabcbb input bbbb pwwkew
      * @return 3
+     * TODO :: can this be solved using index of method
      */
     private static int longestUniqueSubString(String s) {
 
         // loop through the array
-
         // add and maintain the indexes of character found in a map
-
         // keep a pointer that will point to the index after the previous if same character found
-
-        //  keep updating  max length based on value
-
+        // keep updating  max length based on value
 
         Map<Character, Integer> characterIndex = new HashMap();
-      int ans = 0;
-        for(int i =0, j = 0; j < s.length(); j++) {
-
+        int ans = 0;int i =0;
+        for(int j = 0; j < s.length(); j++) {
             // if found in map update the pointer of i
-
            if(characterIndex.containsKey(s.charAt(j))) {
                i = Math.max(characterIndex.get(s.charAt(j)) , i);
            }
            ans = Math.max(ans, j - i + 1); // +1 since it need to be length
            characterIndex.put(s.charAt(j) , j + 1); // since we want the index of i to point to the next one after the previous same character
         }
-
         return ans;
        }
-
 
     // Method One - CCI 1.1
     static void isStringUnique(String str) {
@@ -187,7 +176,7 @@ public class StringProblems {
 
     // Method 2
     // Time Complexity - O(n)
-    private static void removeDuplicatesInStrng2(String a) {
+    private static void removeDuplicatesInString2(String a) {
         String str = "";
         for(int i = 0; i < a.length(); i++) {
             char c = a.charAt(i);
@@ -223,7 +212,7 @@ public class StringProblems {
         }
         return t.isEmpty();
     }
-
+    // TODO understand this algorithm and implement it in leetcode
     // best algorithm in terms of time and space complexity
     public boolean isAnagram3(String s, String t) {
         if (s.length() != t.length()) {
@@ -244,6 +233,7 @@ public class StringProblems {
 
 
     // Group Anagrams - Leet Code 49
+    // TODO solve this in leetcode
     public List<List<String>> groupAnagrams(String[] strs) {
 
         // 'ate' --> index 1     --> 'eat' at index 5
@@ -266,6 +256,7 @@ public class StringProblems {
     }
 
     // Is Valid Parenthesis - Leet Code 20
+    // TODO solve this in leetcode
     public boolean isValidParenthesis(String s) {
 
        //  '()' valid
@@ -281,7 +272,7 @@ public class StringProblems {
 
     }
 
-    // Is Valid Parenthesis - Leet Code 20
+
     public boolean isString1PermutationOfString2(String s1, String s2) {
 
 
