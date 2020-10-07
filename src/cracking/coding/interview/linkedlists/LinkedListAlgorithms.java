@@ -1,5 +1,6 @@
 package cracking.coding.interview.linkedlists;
 
+import algoritms.leetcode.linkedlists.ListNode;
 import models.LinkedListNode;
 
 import java.util.*;
@@ -88,37 +89,29 @@ public class LinkedListAlgorithms {
     //Q2.4 TODO
 
     //Q 2.5 Given a circular linked list, implement an algorithm which returns node at the beginning of the loop.
-    static void beginningOfLinkedListLoop(LinkedListNode node) {
+    public boolean hasCycle(ListNode head) {
 
-        if(node == null) {
-            return;
-        }
+        //  Instantialte two nodes
 
-        // Identify if there is a loop
-        LinkedListNode node1 = node;
-        LinkedListNode node2 = node;
+        // have them run faster than the next
 
-        while(node2 != null) {
-            node1 = node1.next;
-            node2 = node2.next.next;
+        // if they meet there is a loop
 
-            if(node1 == node2) {
-                System.out.println("Loop Exists");
-                break;
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while(fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if(slow == fast) {
+                return true;
             }
         }
 
-        if(node2.next == null) {
-            System.out.println("No Meeting Point");
-            return;
-        }
-        node1 = node;
-        while(node1 != node2){
-            node1 = node1.next;
-            node2 = node2.next;
-        }
-        System.out.println(node2.data);
+        return false;
     }
+
 
     public List<String> subStringsKDist(String inputStr, int num) {
         Map<Character, Integer> occurrenceMap = new HashMap<>();
@@ -156,6 +149,103 @@ public class LinkedListAlgorithms {
     }
 
 
+    /**
+     * 19. Remove Nth Node From End of List\
+     *
+     * Debug this - TODO
+     */
+    public ListNode removeNthFromEnd(ListNode head, int n) {
 
+        // two pointer approach
+
+        // 1st pointer traver till n
+
+        // 2nd point ter just traverse
+
+        // if the 1st pointer reached the end then remove the 1st pointer
+
+        ListNode newHead = new ListNode(0);
+        newHead.next = head;
+
+        ListNode firstNode = newHead;
+        ListNode secondNode = newHead;
+
+        for(int i = 1; i <= n; i++) {
+            firstNode = firstNode.next;
+        }
+
+        while(firstNode.next != null) {
+            firstNode = firstNode.next;
+            secondNode = secondNode.next;
+        }
+
+        // secod node is the one that needs to be removed
+        secondNode.next = secondNode.next.next;
+
+
+        return newHead.next;
+    }
+
+
+    /**
+     * 21. Merge Two Sorted Lists
+     *
+     *
+     */
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+
+        // create a dummy head
+
+        // point the dummy head to the lowest of the 1st element
+
+        // two more pointers to point to traverse the two lists
+
+        // keep moving one pointer at a time based on the lowest
+
+        if(l1 == null && l2 == null) {
+            return null;
+        }
+
+        // create dummy head
+        ListNode head = new ListNode(0);
+
+        ListNode dummyHead = head;
+
+
+        // create two pointers
+        ListNode pointer1 = l1;
+        ListNode pointer2 = l2;
+
+
+        while(pointer1 != null && pointer2 != null) {
+
+            if(pointer1.value <= pointer2.value) {
+
+                dummyHead.next = pointer1;
+                dummyHead = dummyHead.next;
+                pointer1 = pointer1.next;
+            }
+            else {
+                dummyHead.next = pointer2;
+                dummyHead = dummyHead.next;
+                pointer2 = pointer2.next;
+            }
+        }
+
+        // check if any of the pointer nodes are null
+        if(pointer2 == null) {
+            dummyHead.next = pointer1;
+        }
+
+        if(pointer1 == null) {
+            dummyHead.next = pointer2;
+        }
+
+        return head.next;
+
+
+    }
+}
+    
 
 }
