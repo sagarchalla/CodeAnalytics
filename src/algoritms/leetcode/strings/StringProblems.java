@@ -1,16 +1,14 @@
 package algoritms.leetcode.strings;
 
-import java.time.Duration;
-import java.time.Instant;
 import java.util.*;
 
 public class StringProblems {
 
 
     public static void main(String[] args) {
-        //System.out.println(isAValidPalindrome("ababa"));
+        System.out.println(isPalindrome2(",abA,"));
         //System.out.println(findTheLongestPalindrome("abba"));
-        //System.out.println(longestUniqueSubString("pwwke"));
+       // System.out.println(lengthOfLongestSubstring("abcabcbb"));
         //isStringUnique("aaaa");
         //System.out.println(twoStringsAnagrams2("anagram" , "nagaram"));
         //System.out.println(numUniqueEmails(new String[] {"test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"}));
@@ -22,25 +20,105 @@ public class StringProblems {
     private static int startIndex;
 
 
-    // palindrome - a word that reads the same backward and froward
-    // TODO Complete this in leetcode
-    private static void isAValidPalindrome(String input) {
-        int left = 0;
+    /**
+     * 125. Valid Palindrome
+     *
+     * Input: "A man, a plan, a canal: Panama"
+     * Output: true
+     *
+     * Leetcode : Completed
+     *
+     */
+    public static boolean isPalindrome(String s) {
 
-        int right = input.length() - 1;
+        // parse the string
+        // traverse through the string
+        // instantiate and traverse the whole array matching the first and last pointers
 
-        while (left < right) {
-
-            if (input.charAt(left) != input.charAt(right)) {
-                return;
-            }
-            left++;
-            right--;
+        if(s.length() == 1) {
+            return true;
         }
-        System.out.println("Its Palindrome");
+        s = s.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
+        int begin = 0;
+        int end = s.length() - 1;
+        while(begin < end) {
+            if(s.charAt(begin) != s.charAt(end)) {
+                return false;
+            }
+            begin++;
+            end--;
+        }
+        return true;
+    }
+
+    // Alternative Solution
+    public static boolean isPalindrome2(String s) {
+        s = s.toLowerCase();
+        boolean result = true;
+        int i = 0, j = s.length() - 1;
+        while (i < j) {
+            if (!((s.charAt(i) >= 'a' && s.charAt(i) <= 'z') || (s.charAt(i) >= '0' && s.charAt(i) <= '9'))) {
+                i ++;
+                continue;
+            }
+            if (!((s.charAt(j) >= 'a' && s.charAt(j) <= 'z') || (s.charAt(j) >= '0' && s.charAt(j) <= '9'))) {
+                j --;
+                continue;
+            }
+            if (s.charAt(i) != s.charAt(j)) {
+                result = false;
+                break;
+            }
+            i ++;
+            j --;
+        }
+        return result;
     }
 
     /**
+     * 680. Valid Palindrome II
+     *  Similar to 125
+     */
+    public boolean validPalindrome(String s) {
+
+        int i = 0;
+        int j = s.length() - 1;
+
+        while(i < j) {
+
+            if(s.charAt(i) != s.charAt(j)){
+                return isPalindrome(i , j - 1, s) || isPalindrome(i + 1, j, s);
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+
+    boolean isPalindrome(int i , int j , String s) {
+
+        while(i < j) {
+            if(s.charAt(i) != s.charAt(j)) {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+
+    /**
+     * 234. Palindrome Linked List
+     * Similar to 125
+     *
+     * Leetcode : TODO
+     */
+
+
+    /**
+     * 5. Longest Palindromic Substring
+     *
      * brute force method
      * - compare every string using two for loops
      * - reverse the string and then see if its equal
@@ -53,7 +131,6 @@ public class StringProblems {
      * -  keep track of maxLength and the start index
      * -  consider even and odd scenarios
      *
-     * TODO Find a more understandable approach to the problem - complete this in leetcode
      */
     private static String findTheLongestPalindrome(String input) {
         if (input.length() <= 1) {
@@ -75,6 +152,8 @@ public class StringProblems {
             maxLength = right - 1 - left; // -1 here to avoid out of bound exception
             startIndex = left + 1; // +1 here to avoid out of bound exception
         } }
+
+
 
     /**
      * brute force - compare characters with the next one
@@ -101,6 +180,30 @@ public class StringProblems {
         }
         return ans;
        }
+
+    public static int lengthOfLongestSubstring(String s) {
+
+
+
+        int i = 0;
+        int maxLength = 0;
+
+        Map<Character, Integer> charMap = new HashMap<>();
+
+        for(int j =0; j < s.length(); j++) {
+
+            if(!charMap.containsKey(s.charAt(j))) {
+                charMap.put(s.charAt(j) , j + 1);
+            }
+            else {
+                i = charMap.get(s.charAt(j));
+            }
+
+            maxLength = Math.max(maxLength, j - i + 1);
+        }
+        return maxLength;
+
+    }
 
     // Method One - CCI 1.1
     static void isStringUnique(String str) {

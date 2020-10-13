@@ -1,9 +1,6 @@
 package algoritms.leetcode.arrays;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class ArrayProblems {
 
@@ -12,39 +9,45 @@ public class ArrayProblems {
         // System.out.println(productOfIntExceptSelf(new int[]{ 1, 2, 3, 4, 5 }));
         // System.out.println(Arrays.toString(twoSum(new int[]{3,3 }, 6)));
 
-        System.out.println(maxProductSubArray(new int[]{2, 3, -2, 4}));
+       // System.out.println(maxProductSubArray(new int[]{2, 3, -2, 4}));
+
+        System.out.println(Arrays.toString(productExceptSelf(new int[]{9, 0, -2})));
 
     }
 
 
     /**
-     * Brute Force :: At every integer we check the product of all the left and all the right
-     * <p>
-     * Efficient Approach :: At each integer multiply all the values left of it , second iteration multiply all the right values of it
+     *
+     * 238. Product of Array Except Self
+     *
+     * Leetcode Completed
      */
-    // TODO -- Solve this in leetcode
-    private static int[] productOfIntExceptSelf(int[] nums) {
+    public static int[] productExceptSelf(int[] nums) {
 
-        // edge case if any number in the result is zero then return zero
+        // create a temporary array and loop from the left by multiplying everything
 
-        int resultArray[] = new int[nums.length];
+        // create a temporary array and loop from the right by multiplying everything
 
-        resultArray[0] = nums[0];
+        // return the temporary array
 
-        // Left to Right
-        for (int i = 1; i < nums.length; i++) {
+        if(nums == null || nums.length == 0) {
+            return nums;
+        }
+
+        int[] resultArray = new int[nums.length];
+
+        resultArray[0] = 1;
+
+        for(int i = 1; i < nums.length; i++) {
             resultArray[i] = resultArray[i - 1] * nums[i - 1];
         }
 
-        // Right to Left
-        int R = 1;
-        for (int i = nums.length - 1; i >= 0; i--) {
-            resultArray[i] = resultArray[i] * R;
-            R *= nums[i];
-
+        int product = 1;
+        for(int i = resultArray.length - 1; i >= 0; i--) {
+            resultArray[i] = product * resultArray[i];
+            product = product * nums[i];
         }
         return resultArray;
-
     }
 
     /**
@@ -73,9 +76,10 @@ public class ArrayProblems {
      * if the pointer values are equal it does not matter
      * <p>
      * calculate the max area at each and keep updating it if more that the previous calculated max area
+     *
+     * Leetcode Completed
+     *
      */
-
-    // TODO -- Solve this in leetcode
     private static int maxArea(int[] heights) {
 
         // tow pointers begin and end
@@ -98,7 +102,8 @@ public class ArrayProblems {
     /**
      * 121. Best Time to Buy and Sell Stock
      * <p>
-     * Approach ::
+     * Leetcode Completed
+     *
      */
     private static int maxProfit(int[] prices) {
 

@@ -23,7 +23,7 @@ public class MyQueue<T> {
       }
         // Add the new node at the end of the queue and change rear
         rear.next = queueNode;
-        rear = queueNode;
+        rear = queueNode ;
     }
 
     // dequeue
