@@ -1,4 +1,4 @@
-package models;
+package algoritms.leetcode.models;
 
 import java.util.EmptyStackException;
 

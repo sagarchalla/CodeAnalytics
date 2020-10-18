@@ -1,6 +1,6 @@
 package cracking.coding.interview.stacks;
 
-import models.MyStack;
+import algoritms.leetcode.models.MyStack;
 
 public class StackAlgorithms extends MyStack<Integer> {
 

@@ -1,7 +1,7 @@
 package cracking.coding.interview.linkedlists;
 
 import algoritms.leetcode.linkedlists.ListNode;
-import models.LinkedListNode;
+import algoritms.leetcode.models.LinkedListNode;
 
 import java.util.*;
 

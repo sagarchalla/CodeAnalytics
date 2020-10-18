@@ -1,6 +1,6 @@
 package algoritms.leetcode.linkedlists;
 
-import models.LinkedListNode;
+import algoritms.leetcode.models.LinkedListNode;
 
 import java.util.HashSet;
 

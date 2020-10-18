@@ -1,4 +1,4 @@
-package models;
+package algoritms.leetcode.models;
 public class MyQueue<T> {
 
     // Linked List Queue Node
