@@ -5,16 +5,18 @@ import java.util.*;
 public class ArrayProblems {
 
     public static void main(String[] args) {
+
         // System.out.println(containsDuplicate(new int[]{1 , 2, 3}));
+
         // System.out.println(productOfIntExceptSelf(new int[]{ 1, 2, 3, 4, 5 }));
+
         // System.out.println(Arrays.toString(twoSum(new int[]{3,3 }, 6)));
 
-       // System.out.println(maxProductSubArray(new int[]{2, 3, -2, 4}));
+        // System.out.println(maxProductSubArray(new int[]{2, 3, -2, 4}));
 
-        System.out.println(Arrays.toString(productExceptSelf(new int[]{9, 0, -2})));
+        // System.out.println(Arrays.toString(productExceptSelf(new int[]{9, 0, -2})));
 
     }
-
 
     /**
      *
@@ -25,9 +27,7 @@ public class ArrayProblems {
     public static int[] productExceptSelf(int[] nums) {
 
         // create a temporary array and loop from the left by multiplying everything
-
         // create a temporary array and loop from the right by multiplying everything
-
         // return the temporary array
 
         if(nums == null || nums.length == 0) {
@@ -51,20 +51,21 @@ public class ArrayProblems {
     }
 
     /**
-     * Efficient Approach :: Use a set to determine if the value already exists
+     *
+     * 152. Maximum Product Subarray - Similar to 238
+     *
+     * Leetcode Completed
+     * Input: [2,3,-3,-4,-5]
+     * Output: 6
+     * Explanation: [2,3] has the largest product 6.
+     *
+     * TODO : LeetCode
      */
-    private static boolean containsDuplicate(int[] nums) {
-        Set<Integer> uniqueNumbers = new HashSet<>();
-        for (int num : nums) {
-            if (!uniqueNumbers.contains(num)) {
-                uniqueNumbers.add(num);
-            } else {
-                return false;
-            }
-        }
-        return true;
-    }
+    static int maxProduct(int[] nums) {
+     int maxProduct = 0;
+     return maxProduct;
 
+    }
 
     /**
      * 11. Container with most water
@@ -213,6 +214,22 @@ public class ArrayProblems {
      * TODO:: Implement this
      */
     public static void searchInRotatedSortedArray(int[] nums) {
+    }
+
+
+    /**
+     * Efficient Approach :: Use a set to determine if the value already exists
+     */
+    private static boolean containsDuplicate(int[] nums) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        for (int num : nums) {
+            if (!uniqueNumbers.contains(num)) {
+                uniqueNumbers.add(num);
+            } else {
+                return false;
+            }
+        }
+        return true;
     }
 }
 
