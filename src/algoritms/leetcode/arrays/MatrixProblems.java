@@ -16,61 +16,99 @@ public class MatrixProblems {
         spiralOrder(spiralMatrix).stream().forEach(i -> System.out.println(i));
     }
 
-    // TODO fix the code here
-    static List<Integer> spiralOrder(int[][] matrix) {
+    /**
+     * 54. Spiral Matrix
+     * Leetcode: Completed
+     */
+    public static List<Integer> spiralOrder(int[][] matrix) {
 
-        int left = 0; int right = matrix[0].length - 1;
-        int top = 0; int bottom = matrix.length - 1;
+        List<Integer> result = new ArrayList<>();
+
+
+        if(matrix.length == 0) {
+            return result;
+        }
+
+        int rowBegin = 0; int rowEnd = matrix.length - 1;
+        int colBegin = 0; int colEnd = matrix[0].length - 1;
+
+
 
         String direction = "right";
-        List<Integer> resultList = new ArrayList<>();
+        while(rowBegin <= rowEnd && colBegin <= colEnd) {
 
-        while(left <= right && top <= bottom) {
-            // left to right
             if(direction.equals("right")) {
-                for (int i = left; i <= right; i++) {
-                    resultList.add(matrix[left][i]);
+
+                for(int i = colBegin; i <= colEnd; i++) {
+                    result.add(matrix[rowBegin][i]);
                 }
                 direction = "down";
-                top++;
+                rowBegin++;
             }
-            // top to bottom
+
             else if(direction.equals("down")) {
-            for (int i = top; i <= bottom; i++) {
-                resultList.add(matrix[i][bottom]);
-            }
-            direction = "left";
-            left--;
-            }
 
-            // right to left
+                for(int i = rowBegin; i <= rowEnd; i++) {
+                    result.add(matrix[i][colEnd]);
+                }
+                direction = "left";
+                colEnd--;
+            }
             else if(direction.equals("left")) {
-            for (int i = right; i >= left; i--) {
-                resultList.add(matrix[right][i]);
-            }
-            direction = "up";
-            bottom--;
-            }
 
-            // bottom to top
+                for(int i = colEnd; i >= colBegin; i--) {
+                    result.add(matrix[rowEnd][i]);
+                }
+                direction = "up";
+                rowEnd--;
+            }
             else if(direction.equals("up")) {
-            for (int i = bottom; i >= top; i--) {
-                resultList.add(matrix[i][top]);
-            }
-            direction = "right";
-            left++;
-        } }
 
-        return resultList;
+                for(int i = rowEnd; i >= rowBegin; i--) {
+                    result.add(matrix[i][colBegin]);
+                }
+                direction = "right";
+                colBegin++;
+            }
+        }
+        return result;
     }
 
     /**
-     * 79. Word Search TODO
+     * 79. Word Search - Change this to recursive solution
+     *  TODO - Complete Leetcode
+     * Complete it in leetcode - CHANGE THIS TO RECURSION
+     *
      */
+    boolean wordFound(String word,char[][] board, int i , int j) {
 
-    /**
-     * 73. Set Matrix Zeroes TODO
-     */
+        int rowLength = board.length - 1;
+        int colLength = board[0].length - 1;
+
+
+        for(int k = 1; k < word.length(); k++) {
+
+            if(i <= rowLength && j <= colLength) {
+
+                if(board[i][j + 1] == word.charAt(k)  || board[i - 1][j] == word.charAt(k)
+                        || board[i + 1][j]== word.charAt(k)
+                        || board[i][j - 1] == word.charAt(k))
+
+                {
+                    continue;
+                }
+                else {
+                    return false;
+                }
+            }}
+        return true;
+
+    }
+
+
+/**
+ * 73. Set Matrix Zeroes TODO Complete Leetcode
+ */
 }
 
 

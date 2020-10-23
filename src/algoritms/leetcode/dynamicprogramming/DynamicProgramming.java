@@ -10,22 +10,25 @@ public class DynamicProgramming {
 
     public static void main(String[] args) {
      //   System.out.println(climbingStairCase(5));
+
         System.out.println(uniquePaths(7, 3));
     }
 
     /**
      * LeetCode Problem Number - 70
-     * <p>
+     *
      * You are climbing a stair case. It takes n steps to reach to the top.
      * Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
-     * <p>
+     *
      * Approach
      * :: Identify this as a dynamic programming problem
      * :: Consider a base case and them keep going
      * :: For 1 through 3 numbers number of step is n
      * :: For 4 and so on its a fibonacci sequence obvious since the the current steps to reach is sum of previous two steps (n -1) + (n - 2)
+     *
+     * LeetCode: Completed
      */
-    // TODO Complete this in leet-code
+
     private static int climbingStairCase(int n) {
 
         if (n <= 3) {
@@ -42,36 +45,32 @@ public class DynamicProgramming {
         }
         return resultArray[n - 1];
     }
-
     /**
      * 198. House Robber
-     // Approach
-
-     // At every step calculate if its higher than the one before
-
-     // sum up the alternative number and return the result set back
-
+      Approach
+      At every step calculate if its higher than the one before
+      Sum up the alternative number and return the result set back
+      Leetcode:: Completed
      */
     public int rob(int[] nums) {
 
-        if(nums.length == 0) {
+        if(nums.length == 0){
             return 0;
         }
-
         if(nums.length == 1) {
             return nums[0];
         }
-
-
-        nums[1] =  Math.max(nums[0], nums[1]);
-
-
-        for(int i = 2; i < nums.length; i++) {
-            nums[i] = Math.max(nums[i-1] , nums[i] + nums[i - 2]);
+        if(nums.length == 2){
+            return Math.max(nums[0] , nums[1]);
         }
-
+        nums[1] = Math.max(nums[0] , nums[1]);
+        for(int i = 2; i < nums.length; i++)
+        {
+            nums[i] = Math.max(nums[i - 1] , nums[i] + nums [i - 2]);
+        }
         return nums[nums.length - 1];
     }
+
 
 /**
  *  55. Jump Game

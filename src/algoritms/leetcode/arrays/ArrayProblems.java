@@ -27,7 +27,9 @@ public class ArrayProblems {
     public static int[] productExceptSelf(int[] nums) {
 
         // create a temporary array and loop from the left by multiplying everything
+
         // create a temporary array and loop from the right by multiplying everything
+
         // return the temporary array
 
         if(nums == null || nums.length == 0) {
@@ -230,6 +232,40 @@ public class ArrayProblems {
             }
         }
         return true;
+    }
+
+
+    // Complete the rotLeft function below.
+    static int[] rotLeft(int[] a, int d) {
+
+        if(d > a.length){
+            d = d % a.length;
+        }
+
+        int[] resultArray = new int[a.length];
+
+        // have two passes on the array
+
+        // second half of the array starting from
+        int start = a.length - d;
+        for (int i = 0; i < d; i++) {
+            resultArray[start] = a[i];
+            start++;
+        }
+        start = a.length - d;
+
+        // first half of the array
+        for(int i = 0; i < start; i++) {
+            resultArray[i] = a[d];
+            d++;
+        }
+
+
+
+
+
+
+        return resultArray;
     }
 }
 
