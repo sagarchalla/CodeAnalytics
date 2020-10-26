@@ -9,7 +9,6 @@ package algoritms.leetcode.algorithms.sorrting.algorithms;
  */
 public class MergeSortAlgorithm {
 
-
     private static void splitArrays() {
 
        // create two arrays

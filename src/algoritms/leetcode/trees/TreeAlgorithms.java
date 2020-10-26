@@ -9,93 +9,96 @@ public class TreeAlgorithms {
 
     public static void main(String[] args) {
 
-
         TreeNode treeNode = new TreeNode(5);
         treeNode.left = new TreeNode(4);
         treeNode.right = new TreeNode(3);
         treeNode.right.right = new TreeNode(2);
         treeNode.left.left = new TreeNode(1);
+       // System.out.println(maxDepth(treeNode));
 
-        System.out.println(maxDepth(treeNode));
+        String[][] grid = new String[][]{
+                {"1", "1", "1", "1", "0"},
+                {"1", "1", "0", "1", "0" },
+                {"1", "1", "0", "0", "0"},
+                {"0", "0", "0", "0", "0"} };
+
+        System.out.println(numOfIslands(grid));
+
 
     }
 
-
-    public static int i = 0;
-
+    /**
+     * 104. Maximum Depth of Binary Tree
+     * TODO :: Explore other ways to solve this using stacks and queues
+     *
+     * LeetCode :: Completed
+     */
     public static int maxDepth(TreeNode root) {
-
-
+         // base case
         if (root == null) {
             return 0;
         }
         int leftMax = maxDepth(root.left);
         int rightMax = maxDepth(root.right);
-
-
         return 1 + Math.max(leftMax, rightMax);
     }
 
-    // Depth first Search
-    public int numIslands(char[][] grid) {
-
-        // traverse though the whole grid
-
-        // if i come across land - 1 add to count
-
-        int count = 0;
-
-        for (int row = 0; row < grid.length; row++) {
-            for (int col = 0; col < grid[row].length; col++) {
-
-                if (grid[row][col] == '1') {
-                    count += dfs(grid, row, col);
-                }
-
-            }
-
+    /**
+     * 226. Invert Binary Tree
+     * TODO :: Explore other ways to solve this using stacks and queues
+     *
+     * LeetCode Completed
+     *
+     */
+    public static TreeNode invertTree(TreeNode root) {
+        // base case
+        if(root == null) {
+            return root;
         }
-        return count;
+
+        TreeNode left = root.left;
+        root.left = root.right;
+        root.right = left;
+
+        invertTree(root.left);
+        invertTree(root.right);
+
+        return root;
     }
 
+    public static int i = 0;
+
+    /**
+     * 200. Number of Islands
+     *
+     * TODO :: Leetcode
+     */
+    // Depth first Search
+    static int numOfIslands(String[][] grid) {
+
+        // traverse though the whole grid
+        // if i come across land - 1 add to count
+        int count = 0;
+        for (int row = 0; row < grid.length; row++) {
+            for (int col = 0; col < grid[row].length; col++) {
+                if (grid[row][col].equals("1")) {
+                    count += dfs(grid, row, col);
+                } } }
+        return count; }
+
     // recursive method
-    int dfs(char[][] grid, int row, int col) {
-
-
+    static int dfs(String[][] grid, int row, int col) {
         // base case
-        if (row < 0 || row >= grid.length || col < 0 || col >= grid[row].length || grid[row][col] == '0') {
+        if (row < 0 || row >= grid.length || col < 0 || col >= grid[row].length || grid[row][col].equals("0")) {
             return 0;
         }
-
         // visited already make it zero
-        grid[row][col] = '0';
-
-
+        grid[row][col] = "0";
         dfs(grid, row + 1, col);
         dfs(grid, row - 1, col);
         dfs(grid, row, col + 1);
         dfs(grid, row, col - 1);
-        return 1;
-
-    }
-
-
-    public static TreeNode invertTree(TreeNode root) {
-
-        if (root != null) {
-
-            TreeNode temp = root.left;
-            root.left = root.right;
-            root.right = temp;
-
-            invertTree(root.left);
-            invertTree(root.right);
-
-
-        }
-        return root;
-
-    }
+        return 1; }
 
 
     public List<List<Integer>> levelOrder(TreeNode root) {
