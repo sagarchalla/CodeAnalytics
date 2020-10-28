@@ -259,13 +259,33 @@ public class ArrayProblems {
             resultArray[i] = a[d];
             d++;
         }
-
-
-
-
-
-
         return resultArray;
+    }
+
+
+    public ArrayList<Integer> plusOne(ArrayList<Integer> A) {
+
+
+        // update digit every time
+
+        int digit, carry = 1;
+
+        for(int i = A.size() - 1; i >= 0 ; i--) {
+
+            digit = (A.get(i) + carry) % 10;// Since modulus of any single number other than 10 is that number
+            carry = (A.get(i) + carry) / 10; // get the carry for the next iteration
+            A.set(i, digit);
+        }
+
+        if(carry != 0) {
+            A.add(0, carry);
+        }
+
+        // remove all zeros
+        while(A.get(0) == 0) {
+            A.remove(0);
+        }
+        return A;
     }
 }
 

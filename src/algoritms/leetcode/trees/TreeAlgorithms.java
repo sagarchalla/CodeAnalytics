@@ -1,5 +1,7 @@
 package algoritms.leetcode.trees;
 
+import org.w3c.dom.Node;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,23 +11,165 @@ public class TreeAlgorithms {
 
     public static void main(String[] args) {
 
-        TreeNode treeNode = new TreeNode(5);
-        treeNode.left = new TreeNode(4);
-        treeNode.right = new TreeNode(3);
-        treeNode.right.right = new TreeNode(2);
-        treeNode.left.left = new TreeNode(1);
-       // System.out.println(maxDepth(treeNode));
+        Tree root = new Tree(1);
+        root.left = new Tree(2);
+        root.left.left = new Tree(4);
+        root.right = new Tree(3);
+        root.left.right = new Tree(5);
 
-        String[][] grid = new String[][]{
+
+     /*   String[][] grid = new String[][]{
                 {"1", "1", "1", "1", "0"},
                 {"1", "1", "0", "1", "0" },
                 {"1", "1", "0", "0", "0"},
                 {"0", "0", "0", "0", "0"} };
 
         System.out.println(numOfIslands(grid));
+*/
+
+        levelOrderTraversal(root);
+
+       /* postorder(root);
+        // System.out.println(maxDepth(treeNode));
+
+        System.out.print(
+                "Inorder traversal before insertion:");
+        inorder(root);
+
+        int key = 12;
+        insert(key , root);
+
+        System.out.print(
+                "\nInorder traversal after insertion:");
+        inorder(root);
+*/
+    }
+    // In Order Traversal Of A Tree // left , root , right // DFS
+    static void inorder(Tree root) {
+        if(root == null) {
+            return;
+        }
+        inorder(root.left);
+        System.out.println(root.val);
+        inorder(root.right);
+        }
+
+   // Pre Order Traversal of A Tree // root / left right // DFS
+    static void preorder(Tree node) {
+        // base case
+        if (node == null) {
+            return;
+        }
+        System.out.println(node.val);
+        preorder(node.left);
+        preorder(node.right);
+    }
+
+    // Post Order Traversal // left right root // DFS
+    static void postorder(Tree node) {
+        // base case
+        if(node == null){
+            return;
+        }
+        postorder(node.left);
+        postorder(node.right);
+        System.out.println(node.val);
+    }
+
+    // Level Order Traversal Of A Tree // BFS
+    static void levelOrderTraversal(Tree root) {
+
+        // edge case
+        if(root == null) {
+            return;
+        }
+
+        Queue<Tree> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+
+            Tree tempNode = queue.poll();
+
+            if(tempNode != null) {
+                System.out.println(tempNode.val);
+            }
+
+            if(tempNode.left != null) {
+                queue.add(tempNode.left);
+            }
+
+            if(tempNode.right != null) {
+                queue.add(tempNode.right);
+            }
+
+        }
+    }
+
+    //Inorder Tree Traversal without recursion and without stack
+    static void inOrderTraversal(Tree root)  {
+
 
 
     }
+
+    /**
+     * Insertion in a binary search tree
+     */
+
+    // implement a binary search tree
+    static class Tree {
+
+        int val;
+        Tree left;
+        Tree right;
+
+         Tree(int val) {
+            this.val = val;
+            left = right = null;
+        }
+    }
+
+    // implement the algorithm
+    static Tree insert(int key, Tree root) {
+
+        // use a queue to maintain the root node of where the key need to be placed
+
+        // edge cases
+        if(root == null) {
+            return new Tree(key);
+        }
+
+        Queue<Tree> nodes = new LinkedList<>();
+        nodes.add(root);
+
+        while(!nodes.isEmpty()) {
+            Tree tempNode = nodes.peek();
+            nodes.remove();
+
+            if(tempNode.left == null) {
+                tempNode.left = new Tree(key);
+                break;
+            }
+            else {
+                nodes.add(tempNode.left);
+            }
+
+            if(tempNode.right == null) {
+                tempNode.right = new Tree(key);
+                break;
+            }
+            else {
+                nodes.add(tempNode.right);
+            }
+        }
+        return root;
+    }
+
+
+    /**
+     * TODO :: Deletion in a binary tree
+     */
 
     /**
      * 104. Maximum Depth of Binary Tree
@@ -34,7 +178,7 @@ public class TreeAlgorithms {
      * LeetCode :: Completed
      */
     public static int maxDepth(TreeNode root) {
-         // base case
+         // base casegit
         if (root == null) {
             return 0;
         }
