@@ -114,8 +114,47 @@ public class TreeAlgorithms {
     }
 
     /**
-     * Insertion in a binary search tree
+     * 515. Find Largest Value in Each Tree Row
      */
+    public List<Integer> largestValues(TreeNode root) {
+
+
+        List<Integer> result = new ArrayList<>();
+
+        if(root == null) {
+            return result;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while(!queue.isEmpty()) {
+            // test case failed - TODO figure out why size needed to be in a variable here
+            int size = queue.size();
+
+            int maxValue = Integer.MIN_VALUE;
+
+            for(int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                maxValue = Math.max(maxValue, node.value);
+                if(node.left != null)
+                    queue.offer(node.left);
+                if(node.right != null)
+                    queue.offer(node.right);
+            }
+            result.add(maxValue);
+
+
+        }
+
+
+        return result;
+
+    }
+
+        /**
+         * Insertion in a binary search tree
+         */
 
     // implement a binary search tree
     static class Tree {
