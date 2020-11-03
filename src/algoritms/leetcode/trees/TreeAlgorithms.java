@@ -18,6 +18,8 @@ public class TreeAlgorithms {
         root.left.right = new Tree(5);
 
 
+        System.out.println(serialize(root));
+
      /*   String[][] grid = new String[][]{
                 {"1", "1", "1", "1", "0"},
                 {"1", "1", "0", "1", "0" },
@@ -360,4 +362,32 @@ public class TreeAlgorithms {
         }
     }
 
+
+    // Binary Tree
+    /**
+     * 297. Serialize and Deserialize Binary Tree
+     */
+
+   static String s = "";
+
+    // Encodes a tree to a single string.
+    public static String serialize(Tree root) {
+        if(root == null) {
+            s.concat(String.valueOf(root.val));
+            return s;
+        }
+        // DFS in order traversal of binary tree
+        serialize(root.left);
+        s.concat(String.valueOf(root.val));
+        serialize(root.right);
+
+        return s;
+    }
+
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {
+
+        // de serialize in a DFS manner
+    return null;
+    }
 }

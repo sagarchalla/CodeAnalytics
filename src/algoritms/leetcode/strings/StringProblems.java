@@ -157,11 +157,12 @@ public class StringProblems {
      */
     private static int longestUniqueSubString(String s) {
 
+        List list = new ArrayList();
+
         Map<Character, Integer> characterIndex = new HashMap();
         int ans = 0;int i =0;
         for(int j = 0; j < s.length(); j++) {
-
-            // if found in map update the pointer of i
+              // if found in map update the pointer of i
            if(characterIndex.containsKey(s.charAt(j))) {
                i = Math.max(characterIndex.get(s.charAt(j)) , i);
            }
