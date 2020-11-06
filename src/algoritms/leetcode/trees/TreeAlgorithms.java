@@ -390,4 +390,21 @@ public class TreeAlgorithms {
         // de serialize in a DFS manner
     return null;
     }
-}
+
+         public TreeNode sortedArrayToBST(int[] nums) {
+            // use binary search to search to get to add values to the tree
+            return createTree(nums, 0, nums.length - 1);
+        }
+        TreeNode createTree(int[] nums, int start, int end) {
+            // base case
+            if(start > end) {
+                return null;
+            }
+            int mid = (start + end) / 2;
+            TreeNode node = new TreeNode(nums[mid]);
+            node.left = createTree(nums, start, mid - 1);
+            node.right = createTree(nums, mid + 1, end);
+            return node;
+
+        }
+    }

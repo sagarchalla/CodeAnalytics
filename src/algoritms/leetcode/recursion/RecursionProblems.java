@@ -3,9 +3,7 @@ package algoritms.leetcode.recursion;
 
 // Recursion is basically of two types
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 // 1 - Recursion Itself 2 - Back Tracking
 public class RecursionProblems {
@@ -85,4 +83,35 @@ public class RecursionProblems {
      *
      *
      */
+
+    /**
+     * 494. Target Sum
+     */
+    public int findTargetSumWays(int[] nums, int S) {
+        return backtrack(nums, 0, 0, S, new HashMap<>());
+    }
+
+    public int backtrack(int[] nums, int count , int index, int target, Map<String , Integer> map) {
+        // memoization
+        String key = index + "." + count;
+        if(map.containsKey(key)){
+            return map.get(key);
+        }
+
+        // base case
+        if(index == nums.length) {
+            if(count == target) {
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        }
+        // recursive calls
+        int minus = backtrack(nums, count - nums[index], index + 1, target, map);
+        int plus = backtrack(nums,  count + nums[index], index + 1, target, map);
+        map.put(key , minus + plus);
+        return minus + plus;
+    }
+
 }
