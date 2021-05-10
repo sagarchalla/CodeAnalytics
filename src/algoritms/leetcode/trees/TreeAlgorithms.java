@@ -29,7 +29,7 @@ public class TreeAlgorithms {
         System.out.println(numOfIslands(grid));
 */
 
-        levelOrderTraversal(root);
+       // levelOrderTraversal(root);
 
        /* postorder(root);
         // System.out.println(maxDepth(treeNode));
@@ -78,7 +78,26 @@ public class TreeAlgorithms {
         System.out.println(node.val);
     }
 
-    // Level Order Traversal Of A Tree // BFS
+    // Implement Level Order Traversal For A Tree
+    static List<List<Integer>> levelOrderTraversal(TreeNode root){
+
+       // Instantiate the result set
+       List<Integer> results = new ArrayList<>();
+
+       // Add the root to the queue
+       Queue<TreeNode> queue = new LinkedList<>();
+       queue.add(root);
+
+       while(!queue.isEmpty()){
+
+
+       }
+       List<List<Integer>> resultList = new ArrayList<>();
+       resultList.add(results);
+       return resultList;
+    }
+
+    /*// Level Order Traversal Of A Tree // BFS
     static void levelOrderTraversal(Tree root) {
 
         // edge case
@@ -107,7 +126,7 @@ public class TreeAlgorithms {
 
         }
     }
-
+*/
     //Inorder Tree Traversal without recursion and without stack
     static void inOrderTraversal(Tree root)  {
 

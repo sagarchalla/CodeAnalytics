@@ -1,11 +1,14 @@
 package algoritms.leetcode.arrays;
 
+import java.math.BigDecimal;
+ import java.math.RoundingMode;
 import java.util.*;
 
 public class ArrayProblems {
 
     public static void main(String[] args) {
 
+        System.out.println(seriesSum(5));
         // System.out.println(containsDuplicate(new int[]{1 , 2, 3}));
 
         // System.out.println(productOfIntExceptSelf(new int[]{ 1, 2, 3, 4, 5 }));
@@ -16,6 +19,21 @@ public class ArrayProblems {
 
         // System.out.println(Arrays.toString(productExceptSelf(new int[]{9, 0, -2})));
 
+    }
+
+    public static String seriesSum(int n) {
+
+         float counter = 1;
+        float result = 0;
+        for(int i = 0; i < n; i++){
+            float value = (1/counter);
+            result = result + value;
+            counter += 3;
+        }
+
+        BigDecimal b = new BigDecimal(result).setScale(2, RoundingMode.HALF_UP);
+
+        return String.valueOf((b));
     }
 
     /**
