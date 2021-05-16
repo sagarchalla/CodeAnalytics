@@ -1,4 +1,4 @@
-package cracking.coding.trees.trees;
+package cracking.coding.trees;
 
 
 public class MyTreeNode {
