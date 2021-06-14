@@ -62,6 +62,59 @@ public class PatternSlidingWindow {
        return result;
      }
 
+     // longest substring with letters after replacement // abcde
+     public static int findLengthSubstring(String str, int k) {
+
+        Map<Character, Integer> map = new HashMap<>();
+        int maxRepeatLetterCount = 0;
+        int windowStart = 0;
+        int result = 0;
+        for(int i = 0 ; i < str.length(); i++){
+            Character letter = str.charAt(i);
+            map.put(letter, map.getOrDefault(letter, 0) + 1);
+            maxRepeatLetterCount = Math.max(maxRepeatLetterCount, map.get(letter));
+
+            // move the window if the size is greater than k
+            if(i - windowStart + 1 - maxRepeatLetterCount > k){
+                // move the window
+                Character letter1 = str.charAt(i);
+                map.put(letter, map.getOrDefault(letter, 0) - 1);
+                windowStart++;
+            }
+
+            // calculate the maxLength
+            result = Math.max(result, i - windowStart + 1);
+        }
+        return result;
+     }
+
+     // longest sub array with ones after replacement
+     public static int findOnesAfterReplacingK(int[] arr, int k) {
+             int onesCount = 0; int startIndex = 0;
+             for(int i = 0; i < arr.length; i++){
+                 if(arr[i] == 1){
+                     onesCount++;
+                 }
+                 if(i - startIndex + 1 - onesCount > k){
+                     if(arr[startIndex] == 1){
+                         onesCount--;
+                     }
+                     startIndex++;
+                 }
+
+                 onesCount = Math.max(onesCount, i - startIndex + 1);
+
+             }
+             return onesCount;
+      }
+
+      // permutation in a string String="oidbcaf", Pattern="abc"
+      public static boolean findPermutation2(String str, String pattern) {
+          // TODO: Write your code here
+          return false;
+      }
+
+
      // permutation in a string
      // example  String="oidbcaf", Pattern="abc"
      // example String="oidbcaf", Pattern="abc" -
