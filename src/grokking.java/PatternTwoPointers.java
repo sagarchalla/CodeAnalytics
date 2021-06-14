@@ -23,10 +23,51 @@ public class PatternTwoPointers {
        return new int[] { -1, -1 };
     }
 
-    // remove duplicates //
+
+    // remove duplicates // [2, 3, 3, 3, 6, 9, 9]
     public static int remove(int[] arr) {
-     return 0;
+     int nonDuplicateIndex = 1;
+     for(int i = 1; i < arr.length; i ++){
+         if(arr[nonDuplicateIndex - 1] != arr[i]){
+             arr[nonDuplicateIndex] = arr[i];
+             nonDuplicateIndex++;
+         }
+     }
+     return nonDuplicateIndex;
     }
+
+
+     // squaring a sorted array //  Input: [-3, -1, 0, 1, 2]
+     public static int[] makeSquares(int[] arr) {
+         int[] squares = new int[arr.length];
+         int start = 0; int end = arr.length - 1;
+         int nextIndexUpdate = end;
+
+
+
+         while(start < end){
+
+             int leftSquare = arr[start] * arr[start];
+             int rightSquare = arr[end] * arr[end];
+             if(leftSquare > rightSquare) {
+                 squares[nextIndexUpdate] = leftSquare;
+                 nextIndexUpdate -= 1;
+                 start++;
+             }
+             else if(rightSquare > leftSquare){
+                 squares[nextIndexUpdate] = rightSquare;
+                 nextIndexUpdate -= 1;
+                 end--;
+             }
+             else {
+                 squares[nextIndexUpdate] = rightSquare;
+                 nextIndexUpdate -= 1;
+                 start++;
+             }
+         }
+         return squares;
+
+     }
 
     // triplet sum close to target // Input: [-2, 0, 1, 2],
     public static int searchTriplets(int[] arr, int target) {
@@ -79,13 +120,6 @@ public class PatternTwoPointers {
 
 
 
-    // squaring a sorted array
-    public static int[] makeSquares(int[] arr) {
-        int[] squares = new int[arr.length];
-
-         return squares;
-    }
-
 
     public static void main(String[] args) {
        /* int[] result = search(new int[] { 1, 2, 3, 4, 6 }, 6);
@@ -99,7 +133,24 @@ public class PatternTwoPointers {
         arr = new int[] { 2, 2, 2, 11 };
         System.out.println(remove(arr));*/
 
-        System.out.println(smallerSumTriplets(new int[] { -1, 0, 2, 3 }, 3));
+        //System.out.println(smallerSumTriplets(new int[] { -1, 0, 2, 3 }, 3));
        // System.out.println(TripletWithSmallerSum.searchTriplets(new int[] { -1, 4, 2, 1, 3 }, 5));
+
+        /*int[] arr = new int[] { 2, 3, 3, 3, 6, 9, 9 };
+        System.out.println(remove(arr));
+
+        arr = new int[] { 2, 2, 2, 11 };
+        System.out.println(remove(arr));*/
+
+        int[] result = makeSquares(new int[] { -2, -1, 0, 2, 3 });
+        for (int num : result)
+            System.out.print(num + " ");
+        System.out.println();
+
+        result = makeSquares(new int[] { -3, -1, 0, 1, 2 });
+        for (int num : result)
+            System.out.print(num + " ");
+        System.out.println();
     }
+
 }
