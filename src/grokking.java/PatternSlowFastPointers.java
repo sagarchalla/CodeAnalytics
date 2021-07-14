@@ -1,7 +1,7 @@
 package grokking.java;
 
 // Fast and Slow Pointers
-public class PatternThree {
+public class PatternSlowFastPointers {
 
      static class ListNode {
          int value  = 0;
@@ -29,7 +29,7 @@ public class PatternThree {
         System.out.println("LinkedList has cycle: " + hasCycle(head));
      }
 
-     // Problem - does the linked list have a cycle
+     //  does the linked list have a cycle
      static boolean hasCycle(ListNode head){
          ListNode slow = head;
          ListNode fast = head;
@@ -43,6 +43,8 @@ public class PatternThree {
          }
          return false;
      }
+
+     //
 
 
 
